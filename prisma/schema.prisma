@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output = "../prisma/generated"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user{
+  id  Int  @id @default(autoincrement())
+  username String
+  firstName String
+  middleName String
+  lastName String
+  email String @unique
+  phone String
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+enum OrderStatus {
+  Active
+  Inactive
+}
+
+enum paymentMethod{
+  CreditCard
+  DebitCard
+  PayPal
+  BankTransfer
+}
+
+enum paymentStatus{
+  Pending
+  Completed
+  Failed
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  status    OrderStatus @default(Active)
+  userId    Int
+  productId String
+  quantity  Int
+  totalPrice Float
+  paymentMethod paymentMethod
+  paymentStatus paymentStatus
+  deliveryAddress String
+  deliveryStatus String
+  trackingNumber String
+  orderDate DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("orders")
+}
+
+model BlacklistedToken{
+  id        String   @id @default(cuid())
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("blacklisted_tokens")
+}
+
+model Shipment {
+  id        String   @id @default(cuid())
+  status    ShipmentStatus
+  createdAt DateTime @default(now())
+}
+
+enum ShipmentStatus {
+  Pending
+  Completed
+  InTransit
+  Cancelled
+}
