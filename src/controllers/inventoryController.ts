@@ -129,3 +129,58 @@ export const addInventory = async (req: Request, res: Response) => {
     }
   };
 
+    // stock.controller.ts
+    export const getStockDetails = async (req: Request, res: Response) => {
+        const authHeader = req.headers.authorization;
+        try {
+          const pageNumber = parseInt(req.query.pageNumber as string) || 1;
+          const offset = parseInt(req.query.offset as string) || 10;
+          const status = req.query.status as string;
+      
+          const skip = (pageNumber - 1) * offset;
+      
+          let whereClause = {};
+      
+          if (status === 'available') {
+            whereClause = { quantity: { gt: 0 } };
+          } else if (status === 'out_of_stock') {
+            whereClause = { quantity: { eq: 0 } };
+          }
+      
+          const stockDetails = await prisma.inventory.findMany({
+            where: whereClause,
+            skip,
+            take: offset,
+            select: {
+              id: true,
+              productName: true,
+              quantity: true,
+              price: true,
+              sellingPrice: true,
+              dateAdded: true,
+            },
+          });
+      
+          const stock = stockDetails.map((item) => {
+            return {
+              productId: item.id,
+              productName: item.productName,
+              dateOfEntry: item.dateAdded.toISOString().split('T')[0],
+              quantity: item.quantity,
+              price: item.price,
+              sellingPrice: item.sellingPrice,
+              status: item.quantity > 0 ? 'Available' : 'Out of Stock',
+            };
+          });
+      
+          res.json({
+            status: 200,
+            data: {
+              stock,
+            },
+          });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ message: 'Internal Server Error' });
+        }
+      };

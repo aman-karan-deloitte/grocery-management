@@ -134,6 +134,7 @@ exports.Prisma.ShipmentScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   shipper: 'shipper',
+  shipperId: 'shipperId',
   trackingNumber: 'trackingNumber',
   shipmentStatus: 'shipmentStatus',
   deliveryDate: 'deliveryDate',
@@ -182,6 +183,7 @@ exports.Prisma.InventoryScalarFieldEnum = {
   id: 'id',
   productName: 'productName',
   productType: 'productType',
+  productStatus: 'productStatus',
   supplierId: 'supplierId',
   quantity: 'quantity',
   price: 'price',
@@ -228,6 +230,7 @@ exports.Prisma.ShipmentOrderByRelevanceFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   shipper: 'shipper',
+  shipperId: 'shipperId',
   trackingNumber: 'trackingNumber'
 };
 
@@ -291,6 +294,11 @@ exports.paymentStatus = exports.$Enums.paymentStatus = {
   Pending: 'Pending',
   Completed: 'Completed',
   Failed: 'Failed'
+};
+
+exports.productStatus = exports.$Enums.productStatus = {
+  Available: 'Available',
+  OutOfStock: 'OutOfStock'
 };
 
 exports.Prisma.ModelName = {

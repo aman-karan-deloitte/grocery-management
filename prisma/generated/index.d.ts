@@ -89,6 +89,14 @@ export const shipmentStatus: {
 
 export type shipmentStatus = (typeof shipmentStatus)[keyof typeof shipmentStatus]
 
+
+export const productStatus: {
+  Available: 'Available',
+  OutOfStock: 'OutOfStock'
+};
+
+export type productStatus = (typeof productStatus)[keyof typeof productStatus]
+
 }
 
 export type OrderStatus = $Enums.OrderStatus
@@ -106,6 +114,10 @@ export const paymentStatus: typeof $Enums.paymentStatus
 export type shipmentStatus = $Enums.shipmentStatus
 
 export const shipmentStatus: typeof $Enums.shipmentStatus
+
+export type productStatus = $Enums.productStatus
+
+export const productStatus: typeof $Enums.productStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -2444,6 +2456,7 @@ export namespace Prisma {
     id: string | null
     orderId: string | null
     shipper: string | null
+    shipperId: string | null
     trackingNumber: string | null
     shipmentStatus: $Enums.shipmentStatus | null
     deliveryDate: Date | null
@@ -2457,6 +2470,7 @@ export namespace Prisma {
     id: string | null
     orderId: string | null
     shipper: string | null
+    shipperId: string | null
     trackingNumber: string | null
     shipmentStatus: $Enums.shipmentStatus | null
     deliveryDate: Date | null
@@ -2470,6 +2484,7 @@ export namespace Prisma {
     id: number
     orderId: number
     shipper: number
+    shipperId: number
     trackingNumber: number
     shipmentStatus: number
     deliveryDate: number
@@ -2495,6 +2510,7 @@ export namespace Prisma {
     id?: true
     orderId?: true
     shipper?: true
+    shipperId?: true
     trackingNumber?: true
     shipmentStatus?: true
     deliveryDate?: true
@@ -2508,6 +2524,7 @@ export namespace Prisma {
     id?: true
     orderId?: true
     shipper?: true
+    shipperId?: true
     trackingNumber?: true
     shipmentStatus?: true
     deliveryDate?: true
@@ -2521,6 +2538,7 @@ export namespace Prisma {
     id?: true
     orderId?: true
     shipper?: true
+    shipperId?: true
     trackingNumber?: true
     shipmentStatus?: true
     deliveryDate?: true
@@ -2621,6 +2639,7 @@ export namespace Prisma {
     id: string
     orderId: string
     shipper: string
+    shipperId: string
     trackingNumber: string
     shipmentStatus: $Enums.shipmentStatus
     deliveryDate: Date | null
@@ -2653,6 +2672,7 @@ export namespace Prisma {
     id?: boolean
     orderId?: boolean
     shipper?: boolean
+    shipperId?: boolean
     trackingNumber?: boolean
     shipmentStatus?: boolean
     deliveryDate?: boolean
@@ -2669,6 +2689,7 @@ export namespace Prisma {
     id?: boolean
     orderId?: boolean
     shipper?: boolean
+    shipperId?: boolean
     trackingNumber?: boolean
     shipmentStatus?: boolean
     deliveryDate?: boolean
@@ -2678,7 +2699,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ShipmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "shipper" | "trackingNumber" | "shipmentStatus" | "deliveryDate" | "lat" | "long" | "createdAt" | "updatedAt", ExtArgs["result"]["shipment"]>
+  export type ShipmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "shipper" | "shipperId" | "trackingNumber" | "shipmentStatus" | "deliveryDate" | "lat" | "long" | "createdAt" | "updatedAt", ExtArgs["result"]["shipment"]>
   export type ShipmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     order?: boolean | Shipment$orderArgs<ExtArgs>
   }
@@ -2692,6 +2713,7 @@ export namespace Prisma {
       id: string
       orderId: string
       shipper: string
+      shipperId: string
       trackingNumber: string
       shipmentStatus: $Enums.shipmentStatus
       deliveryDate: Date | null
@@ -3072,6 +3094,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Shipment", 'String'>
     readonly orderId: FieldRef<"Shipment", 'String'>
     readonly shipper: FieldRef<"Shipment", 'String'>
+    readonly shipperId: FieldRef<"Shipment", 'String'>
     readonly trackingNumber: FieldRef<"Shipment", 'String'>
     readonly shipmentStatus: FieldRef<"Shipment", 'shipmentStatus'>
     readonly deliveryDate: FieldRef<"Shipment", 'DateTime'>
@@ -6403,6 +6426,7 @@ export namespace Prisma {
     id: string | null
     productName: string | null
     productType: string | null
+    productStatus: $Enums.productStatus | null
     supplierId: string | null
     quantity: number | null
     price: number | null
@@ -6416,6 +6440,7 @@ export namespace Prisma {
     id: string | null
     productName: string | null
     productType: string | null
+    productStatus: $Enums.productStatus | null
     supplierId: string | null
     quantity: number | null
     price: number | null
@@ -6429,6 +6454,7 @@ export namespace Prisma {
     id: number
     productName: number
     productType: number
+    productStatus: number
     supplierId: number
     quantity: number
     price: number
@@ -6456,6 +6482,7 @@ export namespace Prisma {
     id?: true
     productName?: true
     productType?: true
+    productStatus?: true
     supplierId?: true
     quantity?: true
     price?: true
@@ -6469,6 +6496,7 @@ export namespace Prisma {
     id?: true
     productName?: true
     productType?: true
+    productStatus?: true
     supplierId?: true
     quantity?: true
     price?: true
@@ -6482,6 +6510,7 @@ export namespace Prisma {
     id?: true
     productName?: true
     productType?: true
+    productStatus?: true
     supplierId?: true
     quantity?: true
     price?: true
@@ -6582,6 +6611,7 @@ export namespace Prisma {
     id: string
     productName: string
     productType: string
+    productStatus: $Enums.productStatus
     supplierId: string
     quantity: number
     price: number
@@ -6614,6 +6644,7 @@ export namespace Prisma {
     id?: boolean
     productName?: boolean
     productType?: boolean
+    productStatus?: boolean
     supplierId?: boolean
     quantity?: boolean
     price?: boolean
@@ -6629,6 +6660,7 @@ export namespace Prisma {
     id?: boolean
     productName?: boolean
     productType?: boolean
+    productStatus?: boolean
     supplierId?: boolean
     quantity?: boolean
     price?: boolean
@@ -6638,7 +6670,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type InventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productName" | "productType" | "supplierId" | "quantity" | "price" | "sellingPrice" | "dateAdded" | "createdAt" | "updatedAt", ExtArgs["result"]["inventory"]>
+  export type InventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productName" | "productType" | "productStatus" | "supplierId" | "quantity" | "price" | "sellingPrice" | "dateAdded" | "createdAt" | "updatedAt", ExtArgs["result"]["inventory"]>
 
   export type $InventoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Inventory"
@@ -6647,6 +6679,7 @@ export namespace Prisma {
       id: string
       productName: string
       productType: string
+      productStatus: $Enums.productStatus
       supplierId: string
       quantity: number
       price: number
@@ -7026,6 +7059,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Inventory", 'String'>
     readonly productName: FieldRef<"Inventory", 'String'>
     readonly productType: FieldRef<"Inventory", 'String'>
+    readonly productStatus: FieldRef<"Inventory", 'productStatus'>
     readonly supplierId: FieldRef<"Inventory", 'String'>
     readonly quantity: FieldRef<"Inventory", 'Int'>
     readonly price: FieldRef<"Inventory", 'Float'>
@@ -8325,6 +8359,7 @@ export namespace Prisma {
     id: 'id',
     orderId: 'orderId',
     shipper: 'shipper',
+    shipperId: 'shipperId',
     trackingNumber: 'trackingNumber',
     shipmentStatus: 'shipmentStatus',
     deliveryDate: 'deliveryDate',
@@ -8385,6 +8420,7 @@ export namespace Prisma {
     id: 'id',
     productName: 'productName',
     productType: 'productType',
+    productStatus: 'productStatus',
     supplierId: 'supplierId',
     quantity: 'quantity',
     price: 'price',
@@ -8446,6 +8482,7 @@ export namespace Prisma {
     id: 'id',
     orderId: 'orderId',
     shipper: 'shipper',
+    shipperId: 'shipperId',
     trackingNumber: 'trackingNumber'
   };
 
@@ -8564,6 +8601,13 @@ export namespace Prisma {
    */
   export type EnumpaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'paymentStatus'>
     
+
+
+  /**
+   * Reference to a field of type 'productStatus'
+   */
+  export type EnumproductStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'productStatus'>
+    
   /**
    * Deep Input Types
    */
@@ -8656,6 +8700,7 @@ export namespace Prisma {
     id?: StringFilter<"Shipment"> | string
     orderId?: StringFilter<"Shipment"> | string
     shipper?: StringFilter<"Shipment"> | string
+    shipperId?: StringFilter<"Shipment"> | string
     trackingNumber?: StringFilter<"Shipment"> | string
     shipmentStatus?: EnumshipmentStatusFilter<"Shipment"> | $Enums.shipmentStatus
     deliveryDate?: DateTimeNullableFilter<"Shipment"> | Date | string | null
@@ -8670,6 +8715,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     shipper?: SortOrder
+    shipperId?: SortOrder
     trackingNumber?: SortOrder
     shipmentStatus?: SortOrder
     deliveryDate?: SortOrderInput | SortOrder
@@ -8688,6 +8734,7 @@ export namespace Prisma {
     NOT?: ShipmentWhereInput | ShipmentWhereInput[]
     orderId?: StringFilter<"Shipment"> | string
     shipper?: StringFilter<"Shipment"> | string
+    shipperId?: StringFilter<"Shipment"> | string
     trackingNumber?: StringFilter<"Shipment"> | string
     shipmentStatus?: EnumshipmentStatusFilter<"Shipment"> | $Enums.shipmentStatus
     deliveryDate?: DateTimeNullableFilter<"Shipment"> | Date | string | null
@@ -8702,6 +8749,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     shipper?: SortOrder
+    shipperId?: SortOrder
     trackingNumber?: SortOrder
     shipmentStatus?: SortOrder
     deliveryDate?: SortOrderInput | SortOrder
@@ -8723,6 +8771,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Shipment"> | string
     orderId?: StringWithAggregatesFilter<"Shipment"> | string
     shipper?: StringWithAggregatesFilter<"Shipment"> | string
+    shipperId?: StringWithAggregatesFilter<"Shipment"> | string
     trackingNumber?: StringWithAggregatesFilter<"Shipment"> | string
     shipmentStatus?: EnumshipmentStatusWithAggregatesFilter<"Shipment"> | $Enums.shipmentStatus
     deliveryDate?: DateTimeNullableWithAggregatesFilter<"Shipment"> | Date | string | null
@@ -8960,6 +9009,7 @@ export namespace Prisma {
     id?: StringFilter<"Inventory"> | string
     productName?: StringFilter<"Inventory"> | string
     productType?: StringFilter<"Inventory"> | string
+    productStatus?: EnumproductStatusFilter<"Inventory"> | $Enums.productStatus
     supplierId?: StringFilter<"Inventory"> | string
     quantity?: IntFilter<"Inventory"> | number
     price?: FloatFilter<"Inventory"> | number
@@ -8973,6 +9023,7 @@ export namespace Prisma {
     id?: SortOrder
     productName?: SortOrder
     productType?: SortOrder
+    productStatus?: SortOrder
     supplierId?: SortOrder
     quantity?: SortOrder
     price?: SortOrder
@@ -8990,6 +9041,7 @@ export namespace Prisma {
     NOT?: InventoryWhereInput | InventoryWhereInput[]
     productName?: StringFilter<"Inventory"> | string
     productType?: StringFilter<"Inventory"> | string
+    productStatus?: EnumproductStatusFilter<"Inventory"> | $Enums.productStatus
     supplierId?: StringFilter<"Inventory"> | string
     quantity?: IntFilter<"Inventory"> | number
     price?: FloatFilter<"Inventory"> | number
@@ -9003,6 +9055,7 @@ export namespace Prisma {
     id?: SortOrder
     productName?: SortOrder
     productType?: SortOrder
+    productStatus?: SortOrder
     supplierId?: SortOrder
     quantity?: SortOrder
     price?: SortOrder
@@ -9024,6 +9077,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Inventory"> | string
     productName?: StringWithAggregatesFilter<"Inventory"> | string
     productType?: StringWithAggregatesFilter<"Inventory"> | string
+    productStatus?: EnumproductStatusWithAggregatesFilter<"Inventory"> | $Enums.productStatus
     supplierId?: StringWithAggregatesFilter<"Inventory"> | string
     quantity?: IntWithAggregatesFilter<"Inventory"> | number
     price?: FloatWithAggregatesFilter<"Inventory"> | number
@@ -9202,6 +9256,7 @@ export namespace Prisma {
   export type ShipmentCreateInput = {
     id?: string
     shipper: string
+    shipperId: string
     trackingNumber: string
     shipmentStatus?: $Enums.shipmentStatus
     deliveryDate?: Date | string | null
@@ -9216,6 +9271,7 @@ export namespace Prisma {
     id?: string
     orderId: string
     shipper: string
+    shipperId: string
     trackingNumber: string
     shipmentStatus?: $Enums.shipmentStatus
     deliveryDate?: Date | string | null
@@ -9228,6 +9284,7 @@ export namespace Prisma {
   export type ShipmentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     shipper?: StringFieldUpdateOperationsInput | string
+    shipperId?: StringFieldUpdateOperationsInput | string
     trackingNumber?: StringFieldUpdateOperationsInput | string
     shipmentStatus?: EnumshipmentStatusFieldUpdateOperationsInput | $Enums.shipmentStatus
     deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9242,6 +9299,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     orderId?: StringFieldUpdateOperationsInput | string
     shipper?: StringFieldUpdateOperationsInput | string
+    shipperId?: StringFieldUpdateOperationsInput | string
     trackingNumber?: StringFieldUpdateOperationsInput | string
     shipmentStatus?: EnumshipmentStatusFieldUpdateOperationsInput | $Enums.shipmentStatus
     deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9255,6 +9313,7 @@ export namespace Prisma {
     id?: string
     orderId: string
     shipper: string
+    shipperId: string
     trackingNumber: string
     shipmentStatus?: $Enums.shipmentStatus
     deliveryDate?: Date | string | null
@@ -9267,6 +9326,7 @@ export namespace Prisma {
   export type ShipmentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     shipper?: StringFieldUpdateOperationsInput | string
+    shipperId?: StringFieldUpdateOperationsInput | string
     trackingNumber?: StringFieldUpdateOperationsInput | string
     shipmentStatus?: EnumshipmentStatusFieldUpdateOperationsInput | $Enums.shipmentStatus
     deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9280,6 +9340,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     orderId?: StringFieldUpdateOperationsInput | string
     shipper?: StringFieldUpdateOperationsInput | string
+    shipperId?: StringFieldUpdateOperationsInput | string
     trackingNumber?: StringFieldUpdateOperationsInput | string
     shipmentStatus?: EnumshipmentStatusFieldUpdateOperationsInput | $Enums.shipmentStatus
     deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9539,6 +9600,7 @@ export namespace Prisma {
     id?: string
     productName: string
     productType: string
+    productStatus: $Enums.productStatus
     supplierId: string
     quantity: number
     price: number
@@ -9552,6 +9614,7 @@ export namespace Prisma {
     id?: string
     productName: string
     productType: string
+    productStatus: $Enums.productStatus
     supplierId: string
     quantity: number
     price: number
@@ -9565,6 +9628,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productName?: StringFieldUpdateOperationsInput | string
     productType?: StringFieldUpdateOperationsInput | string
+    productStatus?: EnumproductStatusFieldUpdateOperationsInput | $Enums.productStatus
     supplierId?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
@@ -9578,6 +9642,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productName?: StringFieldUpdateOperationsInput | string
     productType?: StringFieldUpdateOperationsInput | string
+    productStatus?: EnumproductStatusFieldUpdateOperationsInput | $Enums.productStatus
     supplierId?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
@@ -9591,6 +9656,7 @@ export namespace Prisma {
     id?: string
     productName: string
     productType: string
+    productStatus: $Enums.productStatus
     supplierId: string
     quantity: number
     price: number
@@ -9604,6 +9670,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productName?: StringFieldUpdateOperationsInput | string
     productType?: StringFieldUpdateOperationsInput | string
+    productStatus?: EnumproductStatusFieldUpdateOperationsInput | $Enums.productStatus
     supplierId?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
@@ -9617,6 +9684,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productName?: StringFieldUpdateOperationsInput | string
     productType?: StringFieldUpdateOperationsInput | string
+    productStatus?: EnumproductStatusFieldUpdateOperationsInput | $Enums.productStatus
     supplierId?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
@@ -9904,6 +9972,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     shipper?: SortOrder
+    shipperId?: SortOrder
     trackingNumber?: SortOrder
     shipmentStatus?: SortOrder
     deliveryDate?: SortOrder
@@ -9922,6 +9991,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     shipper?: SortOrder
+    shipperId?: SortOrder
     trackingNumber?: SortOrder
     shipmentStatus?: SortOrder
     deliveryDate?: SortOrder
@@ -9935,6 +10005,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     shipper?: SortOrder
+    shipperId?: SortOrder
     trackingNumber?: SortOrder
     shipmentStatus?: SortOrder
     deliveryDate?: SortOrder
@@ -10226,6 +10297,13 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type EnumproductStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.productStatus | EnumproductStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.productStatus[]
+    notIn?: $Enums.productStatus[]
+    not?: NestedEnumproductStatusFilter<$PrismaModel> | $Enums.productStatus
+  }
+
   export type InventoryOrderByRelevanceInput = {
     fields: InventoryOrderByRelevanceFieldEnum | InventoryOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -10236,6 +10314,7 @@ export namespace Prisma {
     id?: SortOrder
     productName?: SortOrder
     productType?: SortOrder
+    productStatus?: SortOrder
     supplierId?: SortOrder
     quantity?: SortOrder
     price?: SortOrder
@@ -10255,6 +10334,7 @@ export namespace Prisma {
     id?: SortOrder
     productName?: SortOrder
     productType?: SortOrder
+    productStatus?: SortOrder
     supplierId?: SortOrder
     quantity?: SortOrder
     price?: SortOrder
@@ -10268,6 +10348,7 @@ export namespace Prisma {
     id?: SortOrder
     productName?: SortOrder
     productType?: SortOrder
+    productStatus?: SortOrder
     supplierId?: SortOrder
     quantity?: SortOrder
     price?: SortOrder
@@ -10281,6 +10362,16 @@ export namespace Prisma {
     quantity?: SortOrder
     price?: SortOrder
     sellingPrice?: SortOrder
+  }
+
+  export type EnumproductStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.productStatus | EnumproductStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.productStatus[]
+    notIn?: $Enums.productStatus[]
+    not?: NestedEnumproductStatusWithAggregatesFilter<$PrismaModel> | $Enums.productStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumproductStatusFilter<$PrismaModel>
+    _max?: NestedEnumproductStatusFilter<$PrismaModel>
   }
 
   export type TaskOrderByRelevanceInput = {
@@ -10432,6 +10523,10 @@ export namespace Prisma {
     update?: ShipmentUpdateWithWhereUniqueWithoutOrderInput | ShipmentUpdateWithWhereUniqueWithoutOrderInput[]
     updateMany?: ShipmentUpdateManyWithWhereWithoutOrderInput | ShipmentUpdateManyWithWhereWithoutOrderInput[]
     deleteMany?: ShipmentScalarWhereInput | ShipmentScalarWhereInput[]
+  }
+
+  export type EnumproductStatusFieldUpdateOperationsInput = {
+    set?: $Enums.productStatus
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -10683,6 +10778,23 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumproductStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.productStatus | EnumproductStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.productStatus[]
+    notIn?: $Enums.productStatus[]
+    not?: NestedEnumproductStatusFilter<$PrismaModel> | $Enums.productStatus
+  }
+
+  export type NestedEnumproductStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.productStatus | EnumproductStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.productStatus[]
+    notIn?: $Enums.productStatus[]
+    not?: NestedEnumproductStatusWithAggregatesFilter<$PrismaModel> | $Enums.productStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumproductStatusFilter<$PrismaModel>
+    _max?: NestedEnumproductStatusFilter<$PrismaModel>
+  }
+
   export type OrderCreateWithoutShipmentInput = {
     id?: string
     status?: $Enums.OrderStatus
@@ -10782,6 +10894,7 @@ export namespace Prisma {
   export type ShipmentCreateWithoutOrderInput = {
     id?: string
     shipper: string
+    shipperId: string
     trackingNumber: string
     shipmentStatus?: $Enums.shipmentStatus
     deliveryDate?: Date | string | null
@@ -10794,6 +10907,7 @@ export namespace Prisma {
   export type ShipmentUncheckedCreateWithoutOrderInput = {
     id?: string
     shipper: string
+    shipperId: string
     trackingNumber: string
     shipmentStatus?: $Enums.shipmentStatus
     deliveryDate?: Date | string | null
@@ -10836,6 +10950,7 @@ export namespace Prisma {
     id?: StringFilter<"Shipment"> | string
     orderId?: StringFilter<"Shipment"> | string
     shipper?: StringFilter<"Shipment"> | string
+    shipperId?: StringFilter<"Shipment"> | string
     trackingNumber?: StringFilter<"Shipment"> | string
     shipmentStatus?: EnumshipmentStatusFilter<"Shipment"> | $Enums.shipmentStatus
     deliveryDate?: DateTimeNullableFilter<"Shipment"> | Date | string | null
@@ -10848,6 +10963,7 @@ export namespace Prisma {
   export type ShipmentCreateManyOrderInput = {
     id?: string
     shipper: string
+    shipperId: string
     trackingNumber: string
     shipmentStatus?: $Enums.shipmentStatus
     deliveryDate?: Date | string | null
@@ -10860,6 +10976,7 @@ export namespace Prisma {
   export type ShipmentUpdateWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
     shipper?: StringFieldUpdateOperationsInput | string
+    shipperId?: StringFieldUpdateOperationsInput | string
     trackingNumber?: StringFieldUpdateOperationsInput | string
     shipmentStatus?: EnumshipmentStatusFieldUpdateOperationsInput | $Enums.shipmentStatus
     deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10872,6 +10989,7 @@ export namespace Prisma {
   export type ShipmentUncheckedUpdateWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
     shipper?: StringFieldUpdateOperationsInput | string
+    shipperId?: StringFieldUpdateOperationsInput | string
     trackingNumber?: StringFieldUpdateOperationsInput | string
     shipmentStatus?: EnumshipmentStatusFieldUpdateOperationsInput | $Enums.shipmentStatus
     deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10884,6 +11002,7 @@ export namespace Prisma {
   export type ShipmentUncheckedUpdateManyWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
     shipper?: StringFieldUpdateOperationsInput | string
+    shipperId?: StringFieldUpdateOperationsInput | string
     trackingNumber?: StringFieldUpdateOperationsInput | string
     shipmentStatus?: EnumshipmentStatusFieldUpdateOperationsInput | $Enums.shipmentStatus
     deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

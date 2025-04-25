@@ -234,6 +234,7 @@ const getMonthlyStats = async (startDate: Date, endDate: Date) => {
 
   return monthlyStats;
 };
+
 const getQuarterlyStats = async (startDate: Date, endDate: Date) => {
   let currentDate = new Date(startDate.getFullYear(), Math.floor(startDate.getMonth() / 3) * 3, 1);
   let quarterlyStats = [];
