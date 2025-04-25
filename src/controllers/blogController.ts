@@ -117,3 +117,50 @@ export const getBlogs = async (req: Request, res: Response, next: NextFunction) 
       res.status(500).json({ message: 'Server Error' });
     }
   };
+
+
+  export const getBlogById = async (req: Request, res: Response) => {
+    const authHeader = req.headers.authorization;
+    try {
+      const blogId = parseInt(req.params.id);
+  
+      if (isNaN(blogId)) {
+        res.status(400).json({
+          status: 400,
+          message: 'Invalid blog ID',
+        });
+        return;
+      }
+  
+      const blog = await prisma.blog.findUnique({
+        where: { id: blogId },
+        select: {
+          id: true,
+          image: true,
+          title: true,
+          description: true,
+          date: true,
+        },
+      });
+  
+      if (!blog) {
+        res.status(404).json({
+          status: 404,
+          message: 'Blog not found',
+        });
+        return;
+      }
+  
+      res.status(200).json({
+        status: 200,
+        data: {
+          Blog: blog,
+        },
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        message: 'Internal Server Error',
+      });
+    }
+  };

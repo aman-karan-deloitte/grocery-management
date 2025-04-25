@@ -76,8 +76,10 @@ export const getTask = async (req: Request, res: Response) => {
   export const getAllTasks = async (req: Request, res: Response) => {
     const authHeader = req.headers.authorization;
     try {
+        console.log('Authorization Header:', authHeader); 
+        console.log("tsak");
       const tasks = await prisma.task.findMany();
-  
+      console.log(tasks);
       res.status(200).json({
         status: 200,
         message: 'Tasks retrieved successfully',

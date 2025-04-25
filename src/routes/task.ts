@@ -6,7 +6,7 @@ const taskrouter:Router = Router();
 
 taskrouter.post('/',createTask);
 taskrouter.get('/:taskId',getTask);
-taskrouter.get('all',authMiddleware,getAllTasks);
+//taskrouter.get('/all',authMiddleware,getAllTasks);
 
 
 
