@@ -1,12 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  // output = "../prisma/generated"
+  output   = "../prisma/generated"
 }
 
 datasource db {
@@ -14,73 +8,123 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user{
-  id  Int  @id @default(autoincrement())
-  username String
-  firstName String
+model user {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  password   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  firstName  String
+  lastName   String
   middleName String
-  lastName String
-  email String @unique
-  phone String
-  password String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  username   String
+  phone      String
 
   @@map("users")
 }
+
+model Shipment {
+  id             String         @id @default(cuid())
+  orderId        String         
+  shipper        String
+  trackingNumber String
+  shipmentStatus shipmentStatus @default(Pending)
+  deliveryDate   DateTime?      @default(now())
+  lat            Float
+  long           Float
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  order          Order?         @relation(fields: [orderId], references: [id])
+  @@map("shipments")
+}
+
+model Order {
+  id              String         @id @default(cuid())
+  status          OrderStatus    @default(Active)
+  createdAt       DateTime       @default(now())
+  deliveryAddress String
+  deliveryStatus  String
+  orderDate       DateTime       @default(now())
+  paymentMethod   paymentMethod
+  paymentStatus   paymentStatus
+  productId       String
+  productName     String
+  quantity        Int
+  totalPrice      Float
+  trackingNumber  String
+  updatedAt       DateTime       @updatedAt
+  userId          Int
+  shipmentStatus  shipmentStatus @default(Pending)
+  shipmentId      String?        @unique
+  shipment       Shipment[]
+
+  @@map("orders")
+}
+
+model BlacklistedToken {
+  id        String   @id @default(cuid())
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blacklisted_tokens")
+}
+
+model blog {
+  id          Int      @id @default(autoincrement())
+  image       String
+  title       String
+  description String
+  date        DateTime @default(now())
+}
+
 enum OrderStatus {
   Active
   Inactive
 }
 
-enum paymentMethod{
+enum paymentMethod {
   CreditCard
   DebitCard
   PayPal
   BankTransfer
 }
 
-enum paymentStatus{
+enum paymentStatus {
   Pending
   Completed
   Failed
 }
 
-model Order {
-  id        String   @id @default(cuid())
-  status    OrderStatus @default(Active)
-  userId    Int
-  productId String
-  quantity  Int
-  totalPrice Float
-  paymentMethod paymentMethod
-  paymentStatus paymentStatus
-  deliveryAddress String
-  deliveryStatus String
-  trackingNumber String
-  orderDate DateTime @default(now())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  @@map("orders")
-}
-
-model BlacklistedToken{
-  id        String   @id @default(cuid())
-  token     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  @@map("blacklisted_tokens")
-}
-
-model Shipment {
-  id        String   @id @default(cuid())
-  status    ShipmentStatus
-  createdAt DateTime @default(now())
-}
-
-enum ShipmentStatus {
+enum shipmentStatus {
   Pending
   Completed
   InTransit
-  Cancelled
+  Failed
 }
+model Inventory {
+  id       String   @id @default(cuid())
+  productName String
+  productType String
+  supplierId String
+  quantity   Int
+  price      Float
+  sellingPrice Float
+  dateAdded  DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Task {
+  id        String   @id @default(cuid())
+  taskType  String
+  assignee  String
+  priorityLevel String
+  description String
+  dueDate   DateTime 
+  location  String
+  status    String   @default("Open")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+

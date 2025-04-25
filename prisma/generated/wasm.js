@@ -119,9 +119,26 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   email: 'email',
   password: 'password',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  middleName: 'middleName',
+  username: 'username',
+  phone: 'phone'
+};
+
+exports.Prisma.ShipmentScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  shipper: 'shipper',
+  trackingNumber: 'trackingNumber',
+  shipmentStatus: 'shipmentStatus',
+  deliveryDate: 'deliveryDate',
+  lat: 'lat',
+  long: 'long',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -129,7 +146,62 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.OrderScalarFieldEnum = {
   id: 'id',
   status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  deliveryAddress: 'deliveryAddress',
+  deliveryStatus: 'deliveryStatus',
+  orderDate: 'orderDate',
+  paymentMethod: 'paymentMethod',
+  paymentStatus: 'paymentStatus',
+  productId: 'productId',
+  productName: 'productName',
+  quantity: 'quantity',
+  totalPrice: 'totalPrice',
+  trackingNumber: 'trackingNumber',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  shipmentStatus: 'shipmentStatus',
+  shipmentId: 'shipmentId'
+};
+
+exports.Prisma.BlacklistedTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BlogScalarFieldEnum = {
+  id: 'id',
+  image: 'image',
+  title: 'title',
+  description: 'description',
+  date: 'date'
+};
+
+exports.Prisma.InventoryScalarFieldEnum = {
+  id: 'id',
+  productName: 'productName',
+  productType: 'productType',
+  supplierId: 'supplierId',
+  quantity: 'quantity',
+  price: 'price',
+  sellingPrice: 'sellingPrice',
+  dateAdded: 'dateAdded',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TaskScalarFieldEnum = {
+  id: 'id',
+  taskType: 'taskType',
+  assignee: 'assignee',
+  priorityLevel: 'priorityLevel',
+  description: 'description',
+  dueDate: 'dueDate',
+  location: 'location',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -138,20 +210,97 @@ exports.Prisma.SortOrder = {
 };
 
 exports.Prisma.userOrderByRelevanceFieldEnum = {
-  name: 'name',
   email: 'email',
-  password: 'password'
+  password: 'password',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  middleName: 'middleName',
+  username: 'username',
+  phone: 'phone'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.ShipmentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  shipper: 'shipper',
+  trackingNumber: 'trackingNumber'
 };
 
 exports.Prisma.OrderOrderByRelevanceFieldEnum = {
   id: 'id',
-  status: 'status'
+  deliveryAddress: 'deliveryAddress',
+  deliveryStatus: 'deliveryStatus',
+  productId: 'productId',
+  productName: 'productName',
+  trackingNumber: 'trackingNumber',
+  shipmentId: 'shipmentId'
 };
 
+exports.Prisma.BlacklistedTokenOrderByRelevanceFieldEnum = {
+  id: 'id',
+  token: 'token'
+};
+
+exports.Prisma.blogOrderByRelevanceFieldEnum = {
+  image: 'image',
+  title: 'title',
+  description: 'description'
+};
+
+exports.Prisma.InventoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  productName: 'productName',
+  productType: 'productType',
+  supplierId: 'supplierId'
+};
+
+exports.Prisma.TaskOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskType: 'taskType',
+  assignee: 'assignee',
+  priorityLevel: 'priorityLevel',
+  description: 'description',
+  location: 'location',
+  status: 'status'
+};
+exports.shipmentStatus = exports.$Enums.shipmentStatus = {
+  Pending: 'Pending',
+  Completed: 'Completed',
+  InTransit: 'InTransit',
+  Failed: 'Failed'
+};
+
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  Active: 'Active',
+  Inactive: 'Inactive'
+};
+
+exports.paymentMethod = exports.$Enums.paymentMethod = {
+  CreditCard: 'CreditCard',
+  DebitCard: 'DebitCard',
+  PayPal: 'PayPal',
+  BankTransfer: 'BankTransfer'
+};
+
+exports.paymentStatus = exports.$Enums.paymentStatus = {
+  Pending: 'Pending',
+  Completed: 'Completed',
+  Failed: 'Failed'
+};
 
 exports.Prisma.ModelName = {
   user: 'user',
-  Order: 'Order'
+  Shipment: 'Shipment',
+  Order: 'Order',
+  BlacklistedToken: 'BlacklistedToken',
+  blog: 'blog',
+  Inventory: 'Inventory',
+  Task: 'Task'
 };
 
 /**

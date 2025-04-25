@@ -4,7 +4,7 @@ import { addOrder, getOrderStats, updateOrder } from '../controllers/orderContro
 const orderRouter:Router=Router();
 
 orderRouter.post("/add", addOrder);
-orderRouter.put("/update/:id", updateOrder);
+// orderRouter.put("/update/:id", updateOrder);
 orderRouter.get("/stats", getOrderStats);
 
 

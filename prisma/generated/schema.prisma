@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../prisma/generated"
@@ -15,21 +9,123 @@ datasource db {
 }
 
 model user {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  password   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  firstName  String
+  lastName   String
+  middleName String
+  username   String
+  phone      String
 
   @@map("users")
 }
 
+model Shipment {
+  id             String         @id @default(cuid())
+  orderId        String
+  shipper        String
+  trackingNumber String
+  shipmentStatus shipmentStatus @default(Pending)
+  deliveryDate   DateTime?
+  lat            Float
+  long           Float
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  order          Order?         @relation(fields: [orderId], references: [id])
+
+  @@map("shipments")
+}
+
 model Order {
-  id        String   @id @default(cuid())
-  status    String
-  createdAt DateTime @default(now())
-  // Add other fields as necessary
+  id              String         @id @default(cuid())
+  status          OrderStatus    @default(Active)
+  createdAt       DateTime       @default(now())
+  deliveryAddress String
+  deliveryStatus  String
+  orderDate       DateTime       @default(now())
+  paymentMethod   paymentMethod
+  paymentStatus   paymentStatus
+  productId       String
+  productName     String
+  quantity        Int
+  totalPrice      Float
+  trackingNumber  String
+  updatedAt       DateTime       @updatedAt
+  userId          Int
+  shipmentStatus  shipmentStatus @default(Pending)
+  shipmentId      String?        @unique
+  shipment        Shipment[]
 
   @@map("orders")
+}
+
+model BlacklistedToken {
+  id        String   @id @default(cuid())
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blacklisted_tokens")
+}
+
+model blog {
+  id          Int      @id @default(autoincrement())
+  image       String
+  title       String
+  description String
+  date        DateTime @default(now())
+}
+
+enum OrderStatus {
+  Active
+  Inactive
+}
+
+enum paymentMethod {
+  CreditCard
+  DebitCard
+  PayPal
+  BankTransfer
+}
+
+enum paymentStatus {
+  Pending
+  Completed
+  Failed
+}
+
+enum shipmentStatus {
+  Pending
+  Completed
+  InTransit
+  Failed
+}
+
+model Inventory {
+  id           String   @id @default(cuid())
+  productName  String
+  productType  String
+  supplierId   String
+  quantity     Int
+  price        Float
+  sellingPrice Float
+  dateAdded    DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Task {
+  id            String   @id @default(cuid())
+  taskType      String
+  assignee      String
+  priorityLevel String
+  description   String
+  dueDate       DateTime
+  location      String
+  status        String   @default("Open")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

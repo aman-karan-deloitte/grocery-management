@@ -19,25 +19,47 @@ export const addOrder = async (req: Request, res: Response, next: NextFunction) 
       status ,
       userId,
       productId ,
+      productName,
       quantity  ,
       totalPrice ,
       paymentMethod ,
       paymentStatus,
+      shipmentStatus,
       deliveryAddress ,
-      deliveryStatus
+      deliveryStatus,
+      shipper,
+      shipperId,
+      deliveryDate,
+      lat,
+      long,
     } = req.body;
     const order = await prisma.order.create({
       data: {
             status,
             userId:userId,
             productId,
+            productName,
             quantity,
             totalPrice,
             paymentMethod,
             paymentStatus,
+            shipmentStatus,
             deliveryAddress,
             deliveryStatus,
             trackingNumber:trackingNumber,
+      },
+    });
+
+    const shipment = await prisma.shipment.create({
+      data: {
+        orderId: order.id,
+        shipper,
+        shipperId,
+        trackingNumber,
+        shipmentStatus,
+        deliveryDate,
+        lat,
+        long,
       },
     });
 
